@@ -27,11 +27,11 @@ Run this in your terminal
 
 # Running the Report
 
-Once you have the required modules, you can pull reports as much you damn well please. To run this script, clone this repo and the cd into the vistar-reporting directory.
+Once you have the required modules, you can pull reports as much you damn well please. To run this script, clone this repo and then cd into the vistar-reporting directory.
 
 ### Configuring the Report Parameters
 
-In order to pull the report correctly, you will want to edit the `options.json` file in order to set the report parameters such as environment, account + password (e.g. intersection@vistarmedia.com), reporting filters, and more. Once you are happy with the options, save `options.json` and run the script from your terminal.
+In order to customize the report, you edit the `options.json` file. Here, you can set parameters such as environment, account + password (e.g. intersection@vistarmedia.com), reporting filters, and more. Once you are happy with the options, save `options.json` and run the script from your terminal.
 
 Run:
 
@@ -39,7 +39,7 @@ Run:
 
 If there are no errors, you can open results.csv in excel to review the data. 
 
-**Note:** the resulting csv can be very large. If it contains more than 1 million rows, it will be truncated when you try to open it in excel. For very large pulls, you may need to pull the report multiple times (e.g. report per week).
+**Note:** the resulting csv can be very large. If it contains more than 1 million rows, it will be truncated (rows get deleted) when you try to open it in excel. For very large pulls, you will want to pull the report multiple times (e.g. report per week).
 
 # Date Conversion
 If you are pulling "date" as a column, you will need to convert it from a unix timestamp to a human readable date.
