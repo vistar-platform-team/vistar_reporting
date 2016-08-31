@@ -1,0 +1,21 @@
+{ 
+
+ "session_url": "https://trafficking.vistarmedia.com/session",
+ "url": "https://trafficking.vistarmedia.com/report",
+
+ "email": "intersection@vistarmedia.com",
+ "password": "kGg9gznE",
+ 
+ "report_data": {
+      "start": "2016-06-06T00:00:00-04:00",
+      "end":  "2016-07-03T23:59:59-04:00",
+      "metrics": ["impressions", "spots"],
+      "timezone": "America/New_York",
+      "filters": {
+         "buy_type": ["direct","bonus"],
+         "insertion_order":["YS-ShnAeQdiYqs035FJ6Rg"],
+         "campaign":["1M1AvcRCQX-FSywWESxtKQ"]
+      },
+      "groups":["venue_name","zip","date","hour_of_day"]
+   }
+}
