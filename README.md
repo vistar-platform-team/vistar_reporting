@@ -1,4 +1,4 @@
-# About 
+# About
 
 This script will pull a report based on the parameters defined in `options.json`
 
@@ -8,7 +8,7 @@ The results will get dumped as a csv in `results.csv`
 
 I'm glad you asked.
 
-The dashboard doesn't let you group by multiple date intervals (e.g. pull a report grouped by day of week AND by hour). This script lets you do anything your heart desires. 
+The dashboard doesn't let you group by multiple date intervals (e.g. pull a report grouped by day of week AND by hour). This script lets you do anything your heart desires.
 
 # Required Modules
 
@@ -20,10 +20,10 @@ Run this in your terminal:
 `$ sudo easy_install pip`
 
 You will be prompted to enter a password. Use whatever password you use to unlock your computer
-### 2. Install the requests module
+### 2. Install dependencies
 
-Run this in your terminal
-`$ sudo pip install requests[security]`
+Run this in your terminal from the project directory
+`$ sudo pip install -r requirements.txt`
 
 # Running the Report
 
@@ -35,9 +35,9 @@ In order to customize the report, you edit the `options.json` file. Here, you ca
 
 Run:
 
-`$ python get_reporting.py options.json` 
+`$ python get_reporting.py options.json`
 
-If there are no errors, you can open results.csv in excel to review the data. 
+If there are no errors, you can open results.csv in excel to review the data.
 
 **Note:** the resulting csv can be very large. If it contains more than 1 million rows, it will be truncated (rows get deleted) when you try to open it in excel. For very large pulls, you will want to pull the report multiple times (e.g. report per week).
 
@@ -47,4 +47,3 @@ If you are pulling "date" as a column, you will need to convert it from a unix t
 You can do tha with this formula in excel:
 
 =(((**CELL W DATE**/60)/60)/24)+DATE(1970,1,1)
-
