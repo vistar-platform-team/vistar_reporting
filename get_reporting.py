@@ -1,19 +1,20 @@
-
+import csv
 import json
+import os
 import requests
 import sys
-import datetime
-import time
-import csv
-import os
-  
-  
+
+
 def get_session_cookie(options):
    session_url = options['session_url']
    payload = {k: options[k] for k in ["email", "password"]}
+
+   print 'authenticating'
    r = requests.post(session_url, data=json.dumps(payload))
+   if r.status_code != requests.codes.ok:
+     raise Exception('Could not authenticate with provided credentials')
    return r.cookies
-  
+
 def get_report_with_options(options, cookie):
    url = options['url']
    data = options['report_data']
@@ -33,14 +34,16 @@ def get_report_with_options(options, cookie):
 
    print "running report"
    r = requests.post(url,cookies=cookie, data=json.dumps(data))
+   if r.status_code != requests.codes.ok:
+     raise Exception('Issue obtaining report data: {}'.format(r.text))
    return r
-  
+
 def convert_to_csv(data):
    raw_results_json = data.json()['rows']
    numRows = len(raw_results_json['impressions'])
 
    rows = []
-   
+
    headerRow = raw_results_json.keys()
 
    rows.append(headerRow)
@@ -52,24 +55,24 @@ def convert_to_csv(data):
       rows.append(rowCurr)
 
    with open('results.csv', 'wb+') as f:
-         writer = csv.writer(f, rows[0], quoting=csv.QUOTE_ALL)         
-         for i in range (0,numRows-1):
-            writer.writerow(rows[i])
+      writer = csv.writer(f, rows[0], quoting=csv.QUOTE_ALL)
+      for i in range (0,numRows-1):
+         writer.writerow(rows[i])
 
 def run_reports(options):
    cookie = get_session_cookie(options)
    data = get_report_with_options(options, cookie)
    convert_to_csv(data)
-  
+
 def init():
    try:
-    file_name = sys.argv[1]
+      file_name = sys.argv[1]
    except:
       print "USAGE: python get_reporting.py JSON_FILE"
       sys.exit(1)
-   
+
    run_reports(json.load(open(file_name)))
-  
-  
+
+
 if __name__ == "__main__":
    init()
